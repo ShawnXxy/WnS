@@ -17,7 +17,7 @@ public class MainFrame extends Frame implements KeyListener {
 		sheepInit();
 		sheepInit();
 		sheepInit();
-		
+		treeInit();
 		backgroundInit();
 		setMainFrameUI();
 		this.addKeyListener(this);
@@ -27,6 +27,7 @@ public class MainFrame extends Frame implements KeyListener {
 	private void setMainFrameUI() {
 		this.setLocation(150, 50);
 		this.setSize(800, 600);
+		this.setResizable(false);
 		this.setTitle("Woft & Sheep");
 		this.setLayout(null);
 		this.setVisible(true);
@@ -34,9 +35,64 @@ public class MainFrame extends Frame implements KeyListener {
 	private void backgroundInit() {
 		Icon i = new ImageIcon("background.png");
 		JLabel backgroundImg = new JLabel(i);
-		backgroundImg.setBounds(10, 31, 800, 600);
+		backgroundImg.setBounds(5, 0, 800, 600);
 		this.add(backgroundImg);
 	}
+	
+	// setting game board
+	int[][] datas = {
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
+			{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+	};
+	private void treeInit() {
+		Icon i = new ImageIcon("tree.png");
+		for (int r = 0; r < datas.length; r++) {
+			for (int c = 0; c < datas[0].length; c++) {
+				if (datas[r][c] == 1) {
+					JLabel tree = new JLabel(i);
+					tree.setBounds(12 + 50 * c, 36 + 50 * r, 50, 50); // ????????????
+					this.add(tree);
+				}
+			}
+		}
+	}
+//	private void treeInit() {
+//		int rows = 16;
+//		int cols = 12;
+//		int[][] datas = new int[rows][cols];
+//		Random rand = new Random();
+//		int x;
+//		int y;
+//		int count = 0;
+//		while (count < 50) {
+//			x = rand.nextInt(15) + 1;
+//			y = rand.nextInt(11) + 1;
+//			if (datas[x][y] == 1) {
+//				count--;
+//				Icon i = new ImageIcon("tree.png");
+//				JLabel tree = new JLabel(i);
+//				tree.setBounds(x, y, 50, 50);
+//				this.add(tree);
+//			} else {
+//				datas[x][y] = 1;
+//				count++;
+//				Icon i = new ImageIcon("tree.png");
+//				JLabel tree = new JLabel(i);
+//				tree.setBounds(x, y, 50, 50);
+//				this.add(tree);
+//			}
+//		}
+//	}
 	
 	// setting game characters
 	JLabel wolf;
